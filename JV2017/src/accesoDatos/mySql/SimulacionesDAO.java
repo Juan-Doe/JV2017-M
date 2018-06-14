@@ -380,6 +380,7 @@ public class SimulacionesDAO implements OperacionesDAO {
 	 * almacenadas y regenera las predeterminadas.
 	 * 
 	 * @author DAM Grupo 1 - Juan Antonio Espinosa
+	 * @throws SQLException 
 	 * @date 13/06/2018
 	 */
 
@@ -394,7 +395,11 @@ public class SimulacionesDAO implements OperacionesDAO {
 				// 	sentencia.execute("DELETE FROM sentencias"); // Usar en caso de que el comando "TRUNCATE" no funcione. Comando menos óptimo.
 			} catch (SQLException e) {
 				}
-		cargarPredeterminados();
+		try {
+			cargarPredeterminados();
+		} catch (SQLException | DatosException e) {
+			e.printStackTrace();
+		}
 	}
 
     /**
